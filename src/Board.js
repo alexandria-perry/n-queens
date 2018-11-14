@@ -85,7 +85,7 @@
           return true;
         }
       }
-      return false; // fixme
+      return false; 
     },
 
 
@@ -103,7 +103,7 @@
       if (_.compact(testArray).length > 1) {
         return true;
       }
-      return false; // fixme
+      return false; 
     },
 
     // test if any columns on this board contain conflicts
@@ -114,7 +114,7 @@
           return true;
         }
       }
-      return false; // fixme
+      return false; 
     },
 
 
@@ -132,7 +132,7 @@
       if (_.compact(testArray).length > 1) {
         return true;
       }
-      return false; // fixme
+      return false; 
     },
 
     // test if any major diagonals on this board contain conflicts
@@ -143,7 +143,7 @@
           return true;
         }
       }
-      return false; // fixme
+      return false; 
     },
 
 
@@ -161,7 +161,7 @@
       if (_.compact(testArray).length > 1) {
         return true;
       }
-      return false; // fixme
+      return false; 
     },
 
     // test if any minor diagonals on this board contain conflicts
@@ -172,7 +172,7 @@
           return true;
         }
       }
-      return false; // fixme
+      return false; 
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/

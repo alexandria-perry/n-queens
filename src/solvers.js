@@ -15,12 +15,29 @@
 
 
 
-window.findNRooksSolution = function(n) {
-  var solution = undefined; //fixme
+window.findNRooksSolution = function(num) {
+  if (!board) {
+    var board = new Board({ n: num});
+  }
+  for (var i = 0; i < num; i++) {
+    for (var j = 0; j < num; j++) {
+      board.togglePiece(i, j);
+      if (board.hasAnyRowConflicts() || board.hasAnyColConflicts()) {
+        board.togglePiece(i, j);
+      }
+    }
+  }
+  //find index of piece
+  //use row/col check functions
+  //
+  
+  
+  var solution = board.rows();
 
-  console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
+  console.log('Single solution for ' + num + ' rooks:', JSON.stringify(solution));
   return solution;
 };
+
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {

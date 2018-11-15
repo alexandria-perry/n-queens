@@ -40,37 +40,37 @@ window.findNRooksSolution = function(num) {
 
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
+// try and formulate a recursive function
 window.countNRooksSolutions = function(num) {
   var boardObj = {};
   var count = 0;
-  for(var i = 0; i < num; i++){
+  var boundary = 1;
+  for (var i = 1; i < num ; i++){
+  	boundary = boundary * i;
+  }
+  for(var i = 0; i < boundary; i++){
     boardObj[count] = new Board({ n: num});
-    boardObj[count].togglePiece(0,i);
-
-    count++
+    boardObj[count].togglePiece(0, );//continue here
+	count++;
   }
   var rookBoard = function(num,j){
-    var check = 0;
-    var increment = 0;
     var objLen = Object.keys(boardObj).length;
     var testObj;
-    for (var z = 0; z < objLen; z++){
-      testObj = boardObj[z];
+    for (key in boardObj){
+      testObj = boardObj[key];
       for (var i = 0; i < num; i++){
-          // debugger;
         testObj.togglePiece(j,i);
         if(testObj.hasAnyRooksConflicts()) {
           testObj.togglePiece(j,i);
-        } // _.compact(current row !== [])
+        }
         else{
-            boardObj[count] = testObj;
-            count++; 
+            boardObj[count] = new Board(testObj.rows());
         }
       }
     }
   }
   
-  for (var i = 1; i < num; i++){
+  for (var i = 0; i < num; i++){
     rookBoard(num, i);
     for (key1 in boardObj){
       var compare = JSON.stringify(boardObj[key1].rows());
@@ -83,13 +83,23 @@ window.countNRooksSolutions = function(num) {
         }
       }
     }
-    //check for duplicates using JSON.stringify.
-    //reset count to object.keys(boardObj).length.
-  }
-  var solutionCount = Object.keys(boardObj).length;
     for(key in boardObj){
-      console.log(boardObj[key].rows());
+      console.log(Object.keys(boardObj), count);
     }
+  }
+  // for (key1 in boardObj){
+  // 	var compare = JSON.stringify(boardObj[key1].rows());
+  // 	for (key2 in boardObj) {
+  // 		if (key1 === key2){
+  // 		}else{
+  // 			if(compare === JSON.stringify(boardObj[key2].rows())){
+  // 				delete boardObj[key2];
+  // 			}
+  // 		}
+  // 	} 
+  // }
+  var solutionCount = Object.keys(boardObj).length;
+
   return solutionCount;
 };
 

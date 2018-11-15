@@ -34,16 +34,52 @@ window.findNRooksSolution = function(num) {
   
   var solution = board.rows();
 
-  console.log('Single solution for ' + num + ' rooks:', JSON.stringify(solution));
+  // console.log('Single solution for ' + num + ' rooks:', JSON.stringify(solution));
   return solution;
 };
 
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(num) {
-  var solutionCount = undefined; //fixme
+  var boardObj = {};
+  var count = 0;
+  for(var i = 0; i < num; i++){
+    boardObj[count] = new Board({ n: num});
+    boardObj[count].togglePiece(0,i);
 
-  console.log('Number of solutions for ' + num + ' rooks:', solutionCount);
+    count++
+  }
+  var rookBoard = function(num,j){
+    var check = 0;
+    var increment = 0;
+    var objLen = Object.keys(boardObj).length;
+    var testObj;
+    for (var z = 0; z < objLen; z++){
+      testObj = boardObj[z];
+      for (var i = 0; i < num; i++){
+          // debugger;
+        testObj.togglePiece(j,i);
+        if(testObj.hasAnyRowConflicts() || testObj.hasAnyColConflicts()) {
+          testObj.togglePiece(j,i);
+        } // _.compact(current row !== [])
+        else{
+            boardObj[count] = testObj;
+            count++; 
+
+        }
+      }
+    }
+  }
+  
+  for(var i = 1; i < num; i++){
+    rookBoard(num, i);
+    //check for duplicates using JSON.stringify.
+    //reset count to object.keys(boardObj).length.
+  }
+  var solutionCount = Object.keys(boardObj).length;
+    for(key in boardObj){
+      console.log(boardObj[key].rows());
+    }
   return solutionCount;
 };
 

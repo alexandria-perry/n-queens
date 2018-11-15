@@ -72,9 +72,8 @@
       var testArray = this.get(rowIndex);
       if (_.compact(testArray).length > 1) {
         return true;
-      } else {
+      } 
         return false;
-      }
     },
 
     // test if any rows on this board contain conflicts
@@ -167,7 +166,7 @@
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
       var param = this.get('n');
-      for (var i = 0; i < 2 * param - 2; i++) {
+      for (var i = 0; i < 2 * param ; i++) {
         if (this.hasMinorDiagonalConflictAt(i) === true) {
           return true;
         }

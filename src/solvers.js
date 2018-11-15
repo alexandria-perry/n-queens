@@ -44,13 +44,21 @@ window.findNRooksSolution = function(num) {
 window.countNRooksSolutions = function(num) {
   var boardObj = {};
   var count = 0;
-  var boundary = 1;
-  for (var i = 1; i < num ; i++){
-  	boundary = boundary * i;
+  //factoral function to account for total possibilities of num X num matrix
+  // var boundary = 1;
+  // for (var i = 1; i < num ; i++){
+  // 	boundary = boundary * i;
+  // }
+  var objCopy = function(input){
+    var rows = Object.keys(input).length;
+    var columns = input.rows()[0].length;
+    //copies current object to create a copy of the new board as the current
+    //togglePiece function toggles all pieces within the "all boards" object.
+    var result = [];
   }
-  for(var i = 0; i < boundary; i++){
+  for(var i = 0; i < num; i++){
     boardObj[count] = new Board({ n: num});
-    boardObj[count].togglePiece(0, );//continue here
+    boardObj[count].togglePiece(0, i);
 	count++;
   }
   var rookBoard = function(num,j){

@@ -59,20 +59,30 @@ window.countNRooksSolutions = function(num) {
       for (var i = 0; i < num; i++){
           // debugger;
         testObj.togglePiece(j,i);
-        if(testObj.hasAnyRowConflicts() || testObj.hasAnyColConflicts()) {
+        if(testObj.hasAnyRooksConflicts()) {
           testObj.togglePiece(j,i);
         } // _.compact(current row !== [])
         else{
             boardObj[count] = testObj;
             count++; 
-
         }
       }
     }
   }
   
-  for(var i = 1; i < num; i++){
+  for (var i = 1; i < num; i++){
     rookBoard(num, i);
+    for (key1 in boardObj){
+      var compare = JSON.stringify(boardObj[key1].rows());
+      for (key2 in boardObj){
+        if (key1 === key2){}
+        else {
+          if (compare === JSON.stringify(boardObj[key2].rows())) {
+            delete boardObj[key2];
+          }
+        }
+      }
+    }
     //check for duplicates using JSON.stringify.
     //reset count to object.keys(boardObj).length.
   }

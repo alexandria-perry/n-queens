@@ -18,5 +18,5 @@ console.log('Single solution for ' + num + ' rooks:', JSON.stringify(board.rows(
 
 window.countNRooksSolutions = function(num) {
   var solutionArray = [];
-  for 
+
 }

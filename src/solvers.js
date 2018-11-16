@@ -76,8 +76,10 @@ var Queen = function(num, controller){
   testArray = _.flatten(board.rows());
   testArray = _.compact(testArray);
   if(testArray.length !== num){
+    if(controller )
     controller++;
     Queen(num, controller);
+    
 //doesn't test for multiple valid current row declarations, fix later.
   }
   
